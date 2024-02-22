@@ -2,15 +2,12 @@
 #include "HooksUtils.hpp"
 using namespace cocos2d;
 using namespace cocos2d::extension;
-using namespace gd;
 
-#include "Layers/CocosHeadersOnlyHookExample.hpp"
-#include "Layers/PlayLayerExt.hpp"
+#include "Layers/MenuLayer.hpp"
 
 DWORD WINAPI ModThread(void* hModule) {
     MH_Initialize();
     MenuLayerSkit::CreateHooks();
-    //PlayLayerExt::CreateHooks();
     return 0;
 }
 

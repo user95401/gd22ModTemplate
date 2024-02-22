@@ -2,7 +2,6 @@
 #include "ModUtils.hpp"
 using namespace cocos2d;
 using namespace extension;
-using namespace gd;
 
 class CustomLayer : public CCLayer {
 public:

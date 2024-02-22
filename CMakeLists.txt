@@ -13,7 +13,7 @@ set(lib_output "D:\\Games\\user666\\Geometry Dash 2.204 PC [modloader]\\openhack
 
 #curly-eureka
 set(GAME_VERSION "2.2")
-include("C:\\Users\\Lenovo\\source\\curly-eureka\\CURLY-EUREKA-INCL.cmake")# "\" must be escaped by \\
+include($ENV{CE_INCL})# CURLY-EUREKA-INCL.cmake
 
 #version
 set(FILEVERSION "1, 0, 0, 0")

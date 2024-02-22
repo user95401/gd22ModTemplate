@@ -1,19 +1,6 @@
-﻿#include "CocosHeadersOnlyHookExample.hpp"
+﻿#include "MenuLayer.hpp"
 #include "CustomLayer.hpp"
 
-//and also MappedHooks lol
-
-/*
-*  here I'll show you how to write a layer hook without gd.h
-*/
-
-//if u want, u cant make extension of CCMenuItemLabel to add animations ant other stuff
-//i created copy of robtop's CCMenuItemSpriteExtra that have same behavior
-//i put it to CCMenuItemLabelExt.cpp so lets include its header
-#include "../CCMenuItemLabelExt.hpp"
-
-//for jump to document in ide and other view triks
-#include <gd.h_2.1/layers_scenes_transitions_nodes/CreatorLayer.h>
 //class for getting functions from that
 class CreatorLayerSkit : public CCLayer {
 public:
@@ -42,15 +29,15 @@ public:
 void MenuLayerSkit::onSomeBtn(CCObject* pSender) {
     //asdsed
     auto str = std::string("Just for example)\n<cr>My lady came down, she was thinking no harm Long Lankin stood ready to catch her in his arm There's blood in the kitchen. There's blood in the hall There's blood in the parlour where my lady did fall You might also like Long Lankin Steeleye Span Immolation of Night Invent Animate Without a Whisper Invent Animate -O master, O master, don't lay the blame on me 'Twas the false nurse and Lankin that killed your lady. Long Lankin was hung on a gibbet so high And the false nurse was burnt in a fire close by</c>");
-    FLAlertLayer* alert = FLAlertLayer::create(
-        nullptr, //pFLAlertLayerProtocol
-        "some little text", //Title
-        "asd", //Btn1Text
-        nullptr, //Btn2Text
-        410.f, //Width
-        str //TextAreaContent
-    );
-    alert->show();
+    //FLAlertLayer* alert = FLAlertLayer::create(
+    //    nullptr, //pFLAlertLayerProtocol
+    //    "some little text", //Title
+    //    "asd", //Btn1Text
+    //    nullptr, //Btn2Text
+    //    410.f, //Width
+    //    str //TextAreaContent
+    //);
+    //alert->show();
 }
 bool __fastcall MenuLayer_init(MenuLayerSkit* self) {
     MappedHooks::getOriginal(MenuLayer_init)(self);
@@ -78,10 +65,14 @@ bool __fastcall MenuLayer_init(MenuLayerSkit* self) {
     Menu->setPosition(CCPoint());
     self->addChild(Menu, 10, 5940);//do u know that exists addChild(node, index) and addChild(node, index, tag)???
 
+    //auto test = CCTextInputNode::create(150, 80, "bigFont.fnt", "bigFont.fnt", 5, "bigFont.fnt");
+    //test->setPosition(ModUtils::getCenterPoint());
+    ////test->attachWithIME();
+    //Menu->addChild(test);
+
     //MenuLayerSkit::onSomeBtn
-    //we don't have robtop addons, so take CCMenuItemLabel because it have some animation at least
-    //but we have CCMenuItemLabelExt that have similar anims from gd so use it
-    CCMenuItemLabelExt* btn_chatHistory_001 = CCMenuItemLabelExt::create(
+    //if we don't have robtop addons, so take CCMenuItemLabel because it have some animation at least
+    CCMenuItemSpriteExtra* btn_chatHistory_001 = CCMenuItemSpriteExtra::create(
         ModUtils::createSprite("btn_chatHistory_001.png"),
         self,
         menu_selector(MenuLayerSkit::onSomeBtn)
@@ -91,18 +82,17 @@ bool __fastcall MenuLayer_init(MenuLayerSkit* self) {
     Menu->addChild(btn_chatHistory_001);
 
     //CreatorLayerSkit::sus_70330
-    CCMenuItemLabelExt* versus = CCMenuItemLabelExt::create(
+    CCMenuItemSpriteExtra* versus = CCMenuItemSpriteExtra::create(
         CCLabelBMFont::create("sus", "gjFont30.fnt"),
         self,
         menu_selector(CreatorLayerSkit::sus_70330)
     );
     versus->setPositionX(CCDirector::sharedDirector()->getWinSize().width - 32);
     versus->setPositionY(88.000f);
-    versus->setScale(0.600f);//yo
     Menu->addChild(versus);
 
     //CustomLayer::pushToMe
-    CCMenuItemLabelExt* GJ_everyplayBtn_001 = CCMenuItemLabelExt::create(
+    CCMenuItemSpriteExtra* GJ_everyplayBtn_001 = CCMenuItemSpriteExtra::create(
         ModUtils::createSprite("GJ_everyplayBtn_001.png"),
         self,
         menu_selector(CustomLayer::pushToMe)
@@ -112,7 +102,7 @@ bool __fastcall MenuLayer_init(MenuLayerSkit* self) {
     Menu->addChild(GJ_everyplayBtn_001);
 
     //CreatorLayerSkit::sus_6FE90
-    CCMenuItemLabelExt* dialogIcon_052 = CCMenuItemLabelExt::create(
+    CCMenuItemSpriteExtra* dialogIcon_052 = CCMenuItemSpriteExtra::create(
         ModUtils::createSprite("dialogIcon_052.png"),
         self,
         menu_selector(CreatorLayerSkit::sus_6FE90)

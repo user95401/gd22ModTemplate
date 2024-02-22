@@ -1,8 +1,5 @@
 ﻿#include "CustomLayer.hpp"
 
-//custom button that similar to CCMenuItemSpriteExtra
-#include "../CCMenuItemLabelExt.hpp"
-
 bool CustomLayer::init() {
     //allow keypad for layer
     setKeypadEnabled(true);
@@ -29,7 +26,7 @@ bool CustomLayer::init() {
     backgroundSprite->setColor({ 0, 102, 255 });//blue color u know
     addChild(backgroundSprite, -1);//zOrder -1 because its bg guys
 
-    auto btnBack = CCMenuItemLabelExt::create(
+    CCMenuItemSpriteExtra* btnBack = CCMenuItemSpriteExtra::create(
         ModUtils::createSprite("GJ_arrow_01_001.png"),
         this,
         menu_selector(CustomLayer::onBack)
@@ -40,7 +37,7 @@ bool CustomLayer::init() {
     menuThatExistOnlyForBackBtn->setPosition({ 25.000f, winSize.height - 25 });
 
     //onSomeBtn
-    CCMenuItemLabelExt* btn_chatHistory_001 = CCMenuItemLabelExt::create(
+    CCMenuItemSpriteExtra* btn_chatHistory_001 = CCMenuItemSpriteExtra::create(
         ModUtils::createSprite("btn_chatHistory_001.png"),
         this,
         menu_selector(CustomLayer::onSomeBtn)
