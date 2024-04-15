@@ -1,5 +1,6 @@
 ﻿#include "ModUtils.hpp"
 #include "HooksUtils.hpp"
+#include "gd.h" 
 using namespace cocos2d;
 using namespace cocos2d::extension;
 
