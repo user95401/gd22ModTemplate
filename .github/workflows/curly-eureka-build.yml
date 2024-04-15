@@ -1,43 +1,28 @@
-# This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
-# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: Build curly-eureka mod
-
+# This workflow is for a project that using curly-eureka sdk
+name: Build mod on curly-eureka
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
 env:
   CE_INCL: '${{github.workspace}}/sdk/CURLY-EUREKA-INCL.cmake'
-
 jobs:
-  build:
-    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
-    # You can convert this to a matrix build if you need cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+  main:
     runs-on: windows-latest
-
     steps:
-    - name: This repo
+    - name: this repo
       uses: actions/checkout@v3
-
     - name: curly-eureka sdk repo 
       uses: actions/checkout@v3
       with: 
        repository: 'user95401/curly-eureka'
        path: 'sdk'
-       
-    - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+    - name: configure cmake
       run: cmake -B build -A win32
-
-    - name: Build
-      # Build your program with the given configuration
+    - name: build
       run: cmake --build build --config Release
-
     - uses: actions/upload-artifact@v4
       with:
-       name: "Build artifacts"
+       name: "built dlls"
        path: "*/*.dll"
