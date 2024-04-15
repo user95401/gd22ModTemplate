@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "gd.h" 
 #include "HooksUtils.hpp"
 #include "ModUtils.hpp"
 using namespace cocos2d;
