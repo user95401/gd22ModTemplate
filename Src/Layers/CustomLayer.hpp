@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "ModUtils.hpp"
+#include "gd.h" 
 using namespace cocos2d;
 using namespace extension;
 
